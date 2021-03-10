@@ -1,3 +1,14 @@
+<div class="nav-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <p class="navbar-text">Admin Dashboard</p>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Dashboard', admin_dashboard_index_path, style: 'pull-right' %>
+      <%= link_to 'Merchants', admin_merchants_path, style: 'pull-right' %>
+      <%= link_to 'Invoices', admin_invoices_path, style: 'pull-right' %></li>
+    </ul>
+  </nav>
+</div>
+
 <h1><%= @merchant.name %>'s discounts</h1>
 <h2><a href="/merchant/<%=@merchant.id%>/bulk_discounts/new">new discount</a></h2>
 
@@ -5,7 +16,7 @@
   <section id="discount-<%= discount.id %>">
     <ul>
       <li><a href="/merchant/<%=@merchant.id%>/bulk_discounts/<%=discount.id%>"><%= discount.name %></a></li>
-      <li>Discount: <%= discount.percentage_discount %>%</li>
+      <li>Discount: <%= discount.discount_int %>%</li>
       <li>Quantity Threshold: <%= discount.quantity_threshold %></li>
       <%= button_to "delete discount", "/merchant/#{@merchant.id}/bulk_discounts/#{discount.id}", method: :delete %>
 

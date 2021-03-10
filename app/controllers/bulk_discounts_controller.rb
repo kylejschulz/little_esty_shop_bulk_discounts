@@ -18,7 +18,7 @@ class BulkDiscountsController < ApplicationController
       redirect_to merchant_bulk_discounts_path(@merchant)
     else
       flash[:notice] = "Unable to update bulk discount!"
-      render edit_merchant_bulk_discount(@merchant, @bulk_discount)
+      render 'update'
     end
   end
 
@@ -32,23 +32,24 @@ class BulkDiscountsController < ApplicationController
       redirect_to merchant_bulk_discounts_path(@merchant)
     else
       flash[:notice] = "Unable to create bulk discount!"
-      render new_merchant_bulk_discount(@merchant)
+      render 'new'
     end
   end
 
   def destroy
-    if bulk_discount.delete
+    if @bulk_discount.delete
       flash[:notice] = "Bulk discount has been removed!"
       redirect_to merchant_bulk_discounts_path(@merchant)
     else
       flash[:notice] = "Unable to remove bulk discount!"
-      render new_merchant_bulk_discount(@merchant)
+      redirect_to merchant_bulk_discounts_path(@merchant)
     end
   end
 
 private
 
   def discount_params
+    params[:percentage_discount] = params[:percentage_discount].to_f / 100
     params.permit(:name, :percentage_discount, :quantity_threshold, :merchant_id)
   end
 
