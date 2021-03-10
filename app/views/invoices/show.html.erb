@@ -20,8 +20,8 @@
   <br>
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
-  <p>Revenue after applied discounts: $<%= @invoice.discounted_revenue %></p>
-  <p>Revenue before applied discounts: $<%= @invoice.total_revenue %></p>
+  <p>Revenue after applied discounts: $<%= @invoice.discounted_revenue.round(2) %></p>
+  <p>Revenue before applied discounts: $<%= @invoice.total_revenue.round(2) %></p>
   <p>Total Savings: $<%= @invoice.total_savings.round(2) %></p>
 
 
